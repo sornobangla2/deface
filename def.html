@@ -12,17 +12,21 @@
         }
 
         body {
-            font-family: 'Courier New', monospace;
-            background: linear-gradient(45deg, #000000, #1a1a1a, #000000);
-            background-size: 400% 400%;
-            animation: gradientShift 3s ease infinite;
-            color: #00ff00;
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            overflow: hidden;
-        }
+    font-family: 'Courier New', monospace;
+    background: linear-gradient(45deg, #000000, #1a1a1a, #000000);
+    background-size: 400% 400%;
+    animation: gradientShift 3s ease infinite;
+    color: #00ff00;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    margin: 0;
+    padding: 0;
+}
+
 
         @keyframes gradientShift {
             0% { background-position: 0% 50%; }
