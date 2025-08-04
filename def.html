@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Security Warning - MR RAFI</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Courier New', monospace;
+            background: linear-gradient(45deg, #000000, #1a1a1a, #000000);
+            background-size: 400% 400%;
+            animation: gradientShift 3s ease infinite;
+            color: #00ff00;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .container {
+            text-align: center;
+            padding: 40px;
+            border: 3px solid #ff0000;
+            border-radius: 15px;
+            background: rgba(0, 0, 0, 0.8);
+            box-shadow: 0 0 50px #ff0000, inset 0 0 50px rgba(255, 0, 0, 0.1);
+            animation: pulse 2s infinite;
+            max-width: 800px;
+            backdrop-filter: blur(10px);
+        }
+
+        @keyframes pulse {
+            0% { box-shadow: 0 0 50px #ff0000, inset 0 0 50px rgba(255, 0, 0, 0.1); }
+            50% { box-shadow: 0 0 80px #ff0000, inset 0 0 80px rgba(255, 0, 0, 0.2); }
+            100% { box-shadow: 0 0 50px #ff0000, inset 0 0 50px rgba(255, 0, 0, 0.1); }
+        }
+
+        .warning-icon {
+            font-size: 80px;
+            color: #ff0000;
+            margin-bottom: 20px;
+            animation: blink 1s infinite;
+        }
+
+        @keyframes blink {
+            0%, 50% { opacity: 1; }
+            51%, 100% { opacity: 0.3; }
+        }
+
+        .title {
+            font-size: 48px;
+            color: #ff0000;
+            text-shadow: 0 0 20px #ff0000;
+            margin-bottom: 20px;
+            animation: glow 2s ease-in-out infinite alternate;
+        }
+
+        @keyframes glow {
+            from { text-shadow: 0 0 20px #ff0000, 0 0 30px #ff0000; }
+            to { text-shadow: 0 0 30px #ff0000, 0 0 40px #ff0000, 0 0 50px #ff0000; }
+        }
+
+        .subtitle {
+            font-size: 24px;
+            color: #00ff00;
+            margin-bottom: 30px;
+            text-shadow: 0 0 10px #00ff00;
+        }
+
+        .message {
+            font-size: 18px;
+            line-height: 1.6;
+            margin-bottom: 30px;
+            color: #ffffff;
+        }
+
+        .signature {
+            font-size: 36px;
+            color: #00ffff;
+            text-shadow: 0 0 20px #00ffff;
+            margin-top: 30px;
+            animation: typewriter 3s steps(8) infinite;
+            border-right: 3px solid #00ffff;
+            white-space: nowrap;
+            overflow: hidden;
+            width: fit-content;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        @keyframes typewriter {
+            0% { width: 0; }
+            50% { width: 100%; }
+            100% { width: 0; }
+        }
+
+        .matrix-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        .matrix-char {
+            position: absolute;
+            color: #00ff00;
+            font-family: 'Courier New', monospace;
+            font-size: 14px;
+            animation: fall linear infinite;
+            opacity: 0.7;
+        }
+
+        @keyframes fall {
+            0% { transform: translateY(-100vh); opacity: 1; }
+            100% { transform: translateY(100vh); opacity: 0; }
+        }
+
+        .warning-text {
+            color: #ffff00;
+            font-size: 20px;
+            margin: 20px 0;
+            animation: flash 1.5s infinite;
+        }
+
+        @keyframes flash {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+
+        .skull {
+            font-size: 60px;
+            margin: 20px 0;
+            animation: shake 0.5s infinite;
+        }
+
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            25% { transform: translateX(-5px); }
+            75% { transform: translateX(5px); }
+        }
+    </style>
+</head>
+<body>
+    <div class="matrix-bg" id="matrix"></div>
+    
+    <div class="container">
+        <div class="warning-icon">⚠️</div>
+        <h1 class="title">SECURITY WARNING</h1>
+        <h2 class="subtitle">SYSTEM COMPROMISED</h2>
+        
+        <div class="skull">💀</div>
+        
+        <div class="warning-text">
+            ⚡ UNAUTHORIZED ACCESS DETECTED ⚡
+        </div>
+        
+        <div class="message">
+            This system has been accessed for security testing purposes.<br>
+            All vulnerabilities have been identified and documented.<br>
+            Please contact your system administrator immediately.
+        </div>
+        
+        <div class="warning-text">
+            🔒 SECURE YOUR SYSTEM NOW 🔒
+        </div>
+        
+        <div class="signature">MR RAFI</div>
+    </div>
+
+    <script>
+        // Matrix rain effect
+        function createMatrixRain() {
+            const matrix = document.getElementById('matrix');
+            const chars = '01アイウエオカキクケコサシスセソタチツテトナニヌネノハヒフヘホマミムメモヤユヨラリルレロワヲン';
+            
+            for (let i = 0; i < 50; i++) {
+                const char = document.createElement('div');
+                char.className = 'matrix-char';
+                char.textContent = chars[Math.floor(Math.random() * chars.length)];
+                char.style.left = Math.random() * 100 + '%';
+                char.style.animationDuration = (Math.random() * 3 + 2) + 's';
+                char.style.animationDelay = Math.random() * 2 + 's';
+                matrix.appendChild(char);
+            }
+        }
+
+        // Sound effect simulation
+        function playWarningSound() {
+            const audioContext = new (window.AudioContext || window.webkitAudioContext)();
+            const oscillator = audioContext.createOscillator();
+            const gainNode = audioContext.createGain();
+            
+            oscillator.connect(gainNode);
+            gainNode.connect(audioContext.destination);
+            
+            oscillator.frequency.setValueAtTime(800, audioContext.currentTime);
+            oscillator.frequency.setValueAtTime(400, audioContext.currentTime + 0.5);
+            
+            gainNode.gain.setValueAtTime(0.3, audioContext.currentTime);
+            gainNode.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + 1);
+            
+            oscillator.start(audioContext.currentTime);
+            oscillator.stop(audioContext.currentTime + 1);
+        }
+
+        // Initialize effects
+        createMatrixRain();
+        
+        // Play warning sound on click
+        document.addEventListener('click', playWarningSound);
+        
+        // Random glitch effect
+        setInterval(() => {
+            const container = document.querySelector('.container');
+            container.style.transform = `translate(${Math.random() * 4 - 2}px, ${Math.random() * 4 - 2}px)`;
+            setTimeout(() => {
+                container.style.transform = 'translate(0, 0)';
+            }, 100);
+        }, 3000);
+    </script>
+</body>
+</html>
+
