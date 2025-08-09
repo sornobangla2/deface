@@ -508,7 +508,7 @@ Professional Security Consultants
 let protectionState = {
     alertShown: false,
     lastAlertTime: 0,
-    alertCooldown: 3000, // 3 seconds cooldown between alerts
+    alertCooldown: 10000, // 3 seconds cooldown between alerts
     screenshotAttempts: 0
 };
 
@@ -540,7 +540,7 @@ function showProtectionAlert(reason = 'general') {
     alertDiv.style.fontFamily = 'Share Tech Mono, monospace';
     alertDiv.style.fontSize = '16px';
     alertDiv.style.boxShadow = '0 0 50px #ff0000, inset 0 0 20px rgba(255,255,255,0.1)';
-    alertDiv.style.animation = 'alertPulse 0.5s ease-in-out';
+    alertDiv.style.animation = 'alertPulse 10s ease-in-out';
     
     let reasonText = '';
     switch(reason) {
