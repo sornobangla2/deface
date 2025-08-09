@@ -1,243 +1,873 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Security Warning - MR RAFI</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+<title>Cyber Security Team - CST</title>
+<meta charset="UTF-8">
+<link href='https://fonts.googleapis.com/css?family=Orbitron:400,700,900|Share+Tech+Mono' rel='stylesheet' type='text/css'>
+</head>
+<style type="text/css">
+/* Enhanced Cyber Security Team Styling */
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Share+Tech+Mono&display=swap');
 
-        body {
-    font-family: 'Courier New', monospace;
-    background: linear-gradient(45deg, #000000, #1a1a1a, #000000);
-    background-size: 400% 400%;
-    animation: gradientShift 3s ease infinite;
-    color: #00ff00;
-    width: 100vw;
-    height: 100vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    overflow: hidden;
+* {
     margin: 0;
     padding: 0;
+    box-sizing: border-box;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    -webkit-touch-callout: none;
+    -webkit-tap-highlight-color: transparent;
 }
 
+body {
+    background: #000;
+    color: #00ff00;
+    font-family: 'Share Tech Mono', monospace;
+    overflow-x: hidden;
+    position: relative;
+    min-height: 100vh;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    pointer-events: auto;
+}
 
-        @keyframes gradientShift {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
-        }
+/* Matrix Rain Background */
+#matrix-canvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    opacity: 0.2;
+}
 
-        .container {
-            text-align: center;
-            padding: 40px;
-            border: 3px solid #ff0000;
-            border-radius: 15px;
-            background: rgba(0, 0, 0, 0.8);
-            box-shadow: 0 0 50px #ff0000, inset 0 0 50px rgba(255, 0, 0, 0.1);
-            animation: pulse 2s infinite;
-            max-width: 800px;
-            backdrop-filter: blur(10px);
-        }
+/* Glitch Effect */
+.glitch {
+    position: relative;
+    color: #00ff00;
+    font-size: 4rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    animation: glitch 2s infinite;
+    text-align: center;
+    margin-bottom: 20px;
+}
 
-        @keyframes pulse {
-            0% { box-shadow: 0 0 50px #ff0000, inset 0 0 50px rgba(255, 0, 0, 0.1); }
-            50% { box-shadow: 0 0 80px #ff0000, inset 0 0 80px rgba(255, 0, 0, 0.2); }
-            100% { box-shadow: 0 0 50px #ff0000, inset 0 0 50px rgba(255, 0, 0, 0.1); }
-        }
+.glitch::before,
+.glitch::after {
+    content: attr(data-text);
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
 
-        .warning-icon {
-            font-size: 80px;
-            color: #ff0000;
-            margin-bottom: 20px;
-            animation: blink 1s infinite;
-        }
+.glitch::before {
+    animation: glitch-1 0.5s infinite;
+    color: #ff0000;
+    z-index: -1;
+}
 
-        @keyframes blink {
-            0%, 50% { opacity: 1; }
-            51%, 100% { opacity: 0.3; }
-        }
+.glitch::after {
+    animation: glitch-2 0.5s infinite;
+    color: #0000ff;
+    z-index: -2;
+}
 
-        .title {
-            font-size: 48px;
-            color: #ff0000;
-            text-shadow: 0 0 20px #ff0000;
-            margin-bottom: 20px;
-            animation: glow 2s ease-in-out infinite alternate;
-        }
+@keyframes glitch {
+    0%, 100% { transform: translate(0); }
+    20% { transform: translate(-2px, 2px); }
+    40% { transform: translate(-2px, -2px); }
+    60% { transform: translate(2px, 2px); }
+    80% { transform: translate(2px, -2px); }
+}
 
-        @keyframes glow {
-            from { text-shadow: 0 0 20px #ff0000, 0 0 30px #ff0000; }
-            to { text-shadow: 0 0 30px #ff0000, 0 0 40px #ff0000, 0 0 50px #ff0000; }
-        }
+@keyframes glitch-1 {
+    0%, 100% { transform: translate(0); }
+    10% { transform: translate(-2px, -2px); }
+    20% { transform: translate(2px, 2px); }
+    30% { transform: translate(-2px, 2px); }
+    40% { transform: translate(2px, -2px); }
+}
 
-        .subtitle {
-            font-size: 24px;
-            color: #00ff00;
-            margin-bottom: 30px;
-            text-shadow: 0 0 10px #00ff00;
-        }
+@keyframes glitch-2 {
+    0%, 100% { transform: translate(0); }
+    10% { transform: translate(2px, 2px); }
+    20% { transform: translate(-2px, -2px); }
+    30% { transform: translate(2px, -2px); }
+    40% { transform: translate(-2px, 2px); }
+}
 
-        .message {
-            font-size: 18px;
-            line-height: 1.6;
-            margin-bottom: 30px;
-            color: #ffffff;
-        }
+/* Neon Glow Effect */
+.neon {
+    color: #00ff00;
+    text-shadow: 
+        0 0 5px #00ff00,
+        0 0 10px #00ff00,
+        0 0 15px #00ff00,
+        0 0 20px #00ff00,
+        0 0 35px #00ff00,
+        0 0 40px #00ff00;
+    animation: neon-flicker 1.5s infinite alternate;
+}
 
-        .signature {
-            font-size: 36px;
-            color: #00ffff;
-            text-shadow: 0 0 20px #00ffff;
-            margin-top: 30px;
-            animation: typewriter 3s steps(8) infinite;
-            border-right: 3px solid #00ffff;
-            white-space: nowrap;
-            overflow: hidden;
-            width: fit-content;
-            margin-left: auto;
-            margin-right: auto;
-        }
+@keyframes neon-flicker {
+    0%, 100% {
+        text-shadow: 
+            0 0 5px #00ff00,
+            0 0 10px #00ff00,
+            0 0 15px #00ff00,
+            0 0 20px #00ff00,
+            0 0 35px #00ff00,
+            0 0 40px #00ff00;
+    }
+    50% {
+        text-shadow: 
+            0 0 2px #00ff00,
+            0 0 5px #00ff00,
+            0 0 8px #00ff00,
+            0 0 12px #00ff00,
+            0 0 18px #00ff00,
+            0 0 25px #00ff00;
+    }
+}
 
-        @keyframes typewriter {
-            0% { width: 0; }
-            50% { width: 100%; }
-            100% { width: 0; }
-        }
+/* Pulse Animation */
+.pulse {
+    animation: pulse 2s infinite;
+}
 
-        .matrix-bg {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-            z-index: -1;
-        }
+@keyframes pulse {
+    0% { opacity: 1; }
+    50% { opacity: 0.7; }
+    100% { opacity: 1; }
+}
 
-        .matrix-char {
-            position: absolute;
-            color: #00ff00;
-            font-family: 'Courier New', monospace;
-            font-size: 14px;
-            animation: fall linear infinite;
-            opacity: 0.7;
-        }
+/* Container Styling */
+.container {
+    padding: 50px;
+    text-align: center;
+    position: relative;
+    z-index: 10;
+    margin-top: 50px;
+    background: rgba(0, 0, 0, 0.8);
+    border: 2px solid #00ff00;
+    margin: 50px auto;
+    max-width: 1000px;
+    border-radius: 10px;
+}
 
-        @keyframes fall {
-            0% { transform: translateY(-100vh); opacity: 1; }
-            100% { transform: translateY(100vh); opacity: 0; }
-        }
+.main-title {
+    font-family: 'Orbitron', monospace;
+    font-size: 3.5rem;
+    margin-bottom: 30px;
+    text-transform: uppercase;
+    color: #00ff00;
+    text-shadow: 0 0 20px #00ff00;
+}
 
-        .warning-text {
-            color: #ffff00;
-            font-size: 20px;
-            margin: 20px 0;
-            animation: flash 1.5s infinite;
-        }
+.subtitle {
+    font-size: 2.5rem;
+    margin-bottom: 40px;
+    color: #ff0000;
+    text-shadow: 0 0 20px #ff0000;
+    font-weight: bold;
+}
 
-        @keyframes flash {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0.5; }
-        }
+.message {
+    font-size: 1.3rem;
+    line-height: 2;
+    margin-bottom: 40px;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+    color: #ffffff;
+    background: rgba(0, 255, 0, 0.1);
+    padding: 20px;
+    border: 1px solid #00ff00;
+    border-radius: 5px;
+}
 
-        .skull {
-            font-size: 60px;
-            margin: 20px 0;
-            animation: shake 0.5s infinite;
-        }
+.team-info {
+    font-size: 1.8rem;
+    margin-bottom: 30px;
+    color: #00ff00;
+    background: rgba(255, 0, 0, 0.1);
+    padding: 20px;
+    border: 2px solid #ff0000;
+    border-radius: 5px;
+    text-shadow: 0 0 10px #00ff00;
+}
 
-        @keyframes shake {
-            0%, 100% { transform: translateX(0); }
-            25% { transform: translateX(-5px); }
-            75% { transform: translateX(5px); }
-        }
-    </style>
-</head>
+.owner-name {
+    color: #ff0000;
+    font-size: 2.2rem;
+    font-weight: bold;
+    text-shadow: 0 0 15px #ff0000;
+    display: block;
+    margin: 10px 0;
+}
+
+/* Links Styling */
+.links {
+    margin-top: 40px;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.links a {
+    color: #00ff00;
+    text-decoration: none;
+    padding: 15px 25px;
+    border: 3px solid #00ff00;
+    border-radius: 10px;
+    transition: all 0.3s ease;
+    display: inline-block;
+    text-transform: uppercase;
+    font-weight: bold;
+    font-size: 1.1rem;
+    background: rgba(0, 255, 0, 0.1);
+    text-shadow: 0 0 10px #00ff00;
+    min-width: 200px;
+}
+
+.links a:hover {
+    background: #00ff00;
+    color: #000;
+    box-shadow: 0 0 30px #00ff00;
+    transform: scale(1.1);
+    text-shadow: none;
+}
+
+/* Telegram specific styling */
+.telegram-link {
+    border-color: #0088cc !important;
+    color: #0088cc !important;
+    text-shadow: 0 0 10px #0088cc !important;
+    background: rgba(0, 136, 204, 0.1) !important;
+}
+
+.telegram-link:hover {
+    background: #0088cc !important;
+    box-shadow: 0 0 30px #0088cc !important;
+}
+
+/* Scanline Effect */
+.scanlines {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(transparent 50%, rgba(0, 255, 0, 0.02) 50%);
+    background-size: 100% 4px;
+    z-index: 5;
+    pointer-events: none;
+    animation: scanlines 0.1s linear infinite;
+}
+
+@keyframes scanlines {
+    0% { transform: translateY(0); }
+    100% { transform: translateY(4px); }
+}
+
+/* Audio Controls */
+.audio-controls {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 1001;
+}
+
+.audio-btn {
+    background: #000;
+    border: 2px solid #00ff00;
+    color: #00ff00;
+    padding: 10px 15px;
+    cursor: pointer;
+    border-radius: 5px;
+    font-family: 'Share Tech Mono', monospace;
+    transition: all 0.3s ease;
+}
+
+.audio-btn:hover {
+    background: #00ff00;
+    color: #000;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .main-title { font-size: 2.5rem; }
+    .subtitle { font-size: 1.8rem; }
+    .message { font-size: 1rem; padding: 15px; }
+    .team-info { font-size: 1.3rem; }
+    .container { padding: 20px; margin: 20px; }
+    .links { flex-direction: column; align-items: center; }
+    .links a { min-width: 250px; }
+}
+</style>
+
 <body>
-    <div class="matrix-bg" id="matrix"></div>
+    <!-- Matrix Rain Canvas -->
+    <canvas id="matrix-canvas"></canvas>
+    
+    <!-- Scanlines Effect -->
+    <div class="scanlines"></div>
+    
+    <!-- Audio Controls -->
+    <div class="audio-controls">
+        <button class="audio-btn" onclick="toggleAudio()">🔊 SOUND</button>
+    </div>
+    
+    <!-- Background Audio -->
+    <audio id="bgAudio" loop>
+        <source src="data:audio/wav;base64,UklGRnoGAABXQVZFZm10IBAAAAABAAEAQB8AAEAfAAABAAgAZGF0YQoGAACBhYqFbF1fdJivrJBhNjVgodDbq2EcBj+a2/LDciUFLIHO8tiJNwgZaLvt559NEAxQp+PwtmMcBjiR1/LMeSwFJHfH8N2QQAoUXrTp66hVFApGn+DyvmwhBSuBzvLZiTYIG2m98OScTgwOUarm7blmGgU7k9n1unEiBC13yO/eizEIHWq+8+OWT" type="audio/wav">
+    </audio>
     
     <div class="container">
-        <div class="warning-icon">⚠️</div>
-        <h1 class="title">SECURITY WARNING</h1>
-        <h2 class="subtitle">SYSTEM COMPROMISED</h2>
+        <div class="main-title glitch neon" data-text="SECURED BY">
+            SECURED BY
+        </div>
         
-        <div class="skull">💀</div>
-        
-        <div class="warning-text">
-            ⚡ UNAUTHORIZED ACCESS DETECTED ⚡
+        <div class="subtitle neon pulse">
+            🛡️ CYBER SECURITY TEAM 🛡️
         </div>
         
         <div class="message">
-            This system has been accessed for security testing purposes.<br>
-            All vulnerabilities have been identified and documented.<br>
-            Please contact your system administrator immediately.
+            <strong style="color: #ffffff; font-size: 1.5rem;">Message for Admin:</strong><br><br>
+            <span style="color: #00ff00; font-size: 1.4rem;">Greetings Admin!</span><br><br>
+            <span style="color: #ffffff;">Your Site Has Been Secured By Our Professional Cyber Security Team.<br>
+            We Have Identified And Patched Security Vulnerabilities In Your System.</span><br><br>
+            <span style="color: #ff0000; font-weight: bold;">For Professional Cyber Security Services And Consultation<br>
+            Contact Our Team Leader Mr. Rafi.</span>
         </div>
         
-        <div class="warning-text">
-            🔒 SECURE YOUR SYSTEM NOW 🔒
+        <div class="team-info neon">
+            <strong style="color: #ffffff; font-size: 1.5rem;">Team Owner:</strong>
+            <span class="owner-name">MR. RAFI</span>
+            <div style="color: #ffffff; margin-top: 15px; font-size: 1.4rem;">
+                🛡️ CYBER SECURITY TEAM - CST 🛡️<br>
+                <span style="color: #00ff00;">PROFESSIONAL SECURITY CONSULTANTS</span>
+            </div>
         </div>
         
-        <div class="signature">MR RAFI</div>
+        <div class="links">
+            <a href="https://t.me/cybersecurityteam_cst" target="_blank" class="telegram-link">
+                📱 TELEGRAM CONTACT<br>
+                <small>@cybersecurityteam_cst</small>
+            </a>
+            <a href="https://t.me/cybersecurityteam_cst" target="_blank">
+                🛡️ SECURITY SERVICES<br>
+                <small>Professional Consultation</small>
+            </a>
+            <a href="https://t.me/cybersecurityteam_cst" target="_blank">
+                👥 JOIN OUR TEAM<br>
+                <small>Cyber Security Experts</small>
+            </a>
+        </div>
+        
+        <div style="margin-top: 30px; padding: 20px; border: 1px solid #00ff00; border-radius: 5px; background: rgba(0, 255, 0, 0.05);">
+            <h3 style="color: #ff0000; margin-bottom: 15px;">🔥 CONTACT INFORMATION 🔥</h3>
+            <p style="color: #ffffff; font-size: 1.2rem;">
+                <strong>Team Leader:</strong> <span style="color: #00ff00;">MR. RAFI</span><br>
+                <strong>Telegram:</strong> <a href="https://t.me/cybersecurityteam_cst" style="color: #0088cc;">https://t.me/cybersecurityteam_cst</a><br>
+                <strong>Services:</strong> <span style="color: #00ff00;">Cyber Security, Penetration Testing, Security Consultation</span>
+            </p>
+        </div>
     </div>
 
-    <script>
-        // Matrix rain effect
-        function createMatrixRain() {
-            const matrix = document.getElementById('matrix');
-            const chars = '01アイウエオカキクケコサシスセソタチツテトナニヌネノハヒフヘホマミムメモヤユヨラリルレロワヲン';
-            
-            for (let i = 0; i < 50; i++) {
-                const char = document.createElement('div');
-                char.className = 'matrix-char';
-                char.textContent = chars[Math.floor(Math.random() * chars.length)];
-                char.style.left = Math.random() * 100 + '%';
-                char.style.animationDuration = (Math.random() * 3 + 2) + 's';
-                char.style.animationDelay = Math.random() * 2 + 's';
-                matrix.appendChild(char);
-            }
-        }
+<script>
+// Matrix Rain Effect
+const canvas = document.getElementById('matrix-canvas');
+const ctx = canvas.getContext('2d');
 
-        // Sound effect simulation
-        function playWarningSound() {
-            const audioContext = new (window.AudioContext || window.webkitAudioContext)();
-            const oscillator = audioContext.createOscillator();
-            const gainNode = audioContext.createGain();
-            
-            oscillator.connect(gainNode);
-            gainNode.connect(audioContext.destination);
-            
-            oscillator.frequency.setValueAtTime(800, audioContext.currentTime);
-            oscillator.frequency.setValueAtTime(400, audioContext.currentTime + 0.5);
-            
-            gainNode.gain.setValueAtTime(0.3, audioContext.currentTime);
-            gainNode.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + 1);
-            
-            oscillator.start(audioContext.currentTime);
-            oscillator.stop(audioContext.currentTime + 1);
-        }
+canvas.width = window.innerWidth;
+canvas.height = window.innerHeight;
 
-        // Initialize effects
-        createMatrixRain();
+const matrix = "CYBERSECURITYTEAMCSTMRRAFI0123456789@#$%^&*()";
+const matrixArray = matrix.split("");
+
+const fontSize = 12;
+const columns = canvas.width / fontSize;
+
+const drops = [];
+for(let x = 0; x < columns; x++) {
+    drops[x] = 1;
+}
+
+function drawMatrix() {
+    ctx.fillStyle = 'rgba(0, 0, 0, 0.05)';
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+    
+    ctx.fillStyle = '#00ff00';
+    ctx.font = fontSize + 'px monospace';
+    
+    for(let i = 0; i < drops.length; i++) {
+        const text = matrixArray[Math.floor(Math.random() * matrixArray.length)];
+        ctx.fillText(text, i * fontSize, drops[i] * fontSize);
         
-        // Play warning sound on click
-        document.addEventListener('click', playWarningSound);
-        
-        // Random glitch effect
-        setInterval(() => {
-            const container = document.querySelector('.container');
-            container.style.transform = `translate(${Math.random() * 4 - 2}px, ${Math.random() * 4 - 2}px)`;
+        if(drops[i] * fontSize > canvas.height && Math.random() > 0.975) {
+            drops[i] = 0;
+        }
+        drops[i]++;
+    }
+}
+
+setInterval(drawMatrix, 50);
+
+// Audio Control
+let audioPlaying = false;
+const audio = document.getElementById('bgAudio');
+
+function toggleAudio() {
+    if (audioPlaying) {
+        audio.pause();
+        audioPlaying = false;
+        document.querySelector('.audio-btn').textContent = '🔊 SOUND';
+    } else {
+        audio.play().catch(e => console.log('Audio play failed:', e));
+        audioPlaying = true;
+        document.querySelector('.audio-btn').textContent = '🔇 MUTE';
+    }
+}
+
+// Enhanced glitch effect
+setInterval(() => {
+    const glitchElements = document.querySelectorAll('.glitch');
+    glitchElements.forEach(element => {
+        element.style.transform = `translate(${Math.random() * 4 - 2}px, ${Math.random() * 4 - 2}px)`;
+        setTimeout(() => {
+            element.style.transform = 'translate(0, 0)';
+        }, 100);
+    });
+}, 3000);
+
+// Click effects
+document.addEventListener('click', (e) => {
+    const ripple = document.createElement('div');
+    ripple.style.position = 'fixed';
+    ripple.style.left = e.clientX + 'px';
+    ripple.style.top = e.clientY + 'px';
+    ripple.style.width = '20px';
+    ripple.style.height = '20px';
+    ripple.style.background = '#00ff00';
+    ripple.style.borderRadius = '50%';
+    ripple.style.transform = 'translate(-50%, -50%)';
+    ripple.style.pointerEvents = 'none';
+    ripple.style.animation = 'ripple 0.6s ease-out';
+    ripple.style.zIndex = '9999';
+    
+    document.body.appendChild(ripple);
+    
+    setTimeout(() => {
+        ripple.remove();
+    }, 600);
+});
+
+// Add ripple animation
+const style = document.createElement('style');
+style.textContent = `
+    @keyframes ripple {
+        0% {
+            transform: translate(-50%, -50%) scale(0);
+            opacity: 1;
+        }
+        100% {
+            transform: translate(-50%, -50%) scale(4);
+            opacity: 0;
+        }
+    }
+`;
+document.head.appendChild(style);
+
+// Resize canvas on window resize
+window.addEventListener('resize', () => {
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+});
+
+// Console message
+console.log(`
+🛡️ CYBER SECURITY TEAM - CST 🛡️
+Team Leader: MR. RAFI
+Telegram: https://t.me/cybersecurityteam_cst
+Professional Security Consultants
+`);
+
+// ==================== ENHANCED PROTECTION CODE ====================
+
+// Global protection state
+let protectionState = {
+    alertShown: false,
+    lastAlertTime: 0,
+    alertCooldown: 30000, // 3 seconds cooldown between alerts
+    screenshotAttempts: 0
+};
+
+// Enhanced protection alert function
+function showProtectionAlert(reason = 'general') {
+    const currentTime = Date.now();
+    
+    // Prevent spam alerts
+    if (protectionState.alertShown && (currentTime - protectionState.lastAlertTime) < protectionState.alertCooldown) {
+        return;
+    }
+    
+    protectionState.alertShown = true;
+    protectionState.lastAlertTime = currentTime;
+    
+    const alertDiv = document.createElement('div');
+    alertDiv.id = 'protection-alert';
+    alertDiv.style.position = 'fixed';
+    alertDiv.style.top = '50%';
+    alertDiv.style.left = '50%';
+    alertDiv.style.transform = 'translate(-50%, -50%)';
+    alertDiv.style.background = 'rgba(255, 0, 0, 0.95)';
+    alertDiv.style.color = '#fff';
+    alertDiv.style.padding = '25px';
+    alertDiv.style.borderRadius = '15px';
+    alertDiv.style.border = '3px solid #ff0000';
+    alertDiv.style.zIndex = '999999';
+    alertDiv.style.textAlign = 'center';
+    alertDiv.style.fontFamily = 'Share Tech Mono, monospace';
+    alertDiv.style.fontSize = '16px';
+    alertDiv.style.boxShadow = '0 0 50px #ff0000, inset 0 0 20px rgba(255,255,255,0.1)';
+    alertDiv.style.animation = 'alertPulse 0.5s ease-in-out';
+    
+    let reasonText = '';
+    switch(reason) {
+        case 'screenshot':
+            reasonText = '<p style="color: #ffff00;">📸 Screenshot attempt detected!</p>';
+            protectionState.screenshotAttempts++;
+            break;
+        case 'devtools':
+            reasonText = '<p style="color: #ffff00;">🔧 Developer tools blocked!</p>';
+            break;
+        case 'rightclick':
+            reasonText = '<p style="color: #ffff00;">🖱️ Right-click disabled!</p>';
+            break;
+        case 'keyboard':
+            reasonText = '<p style="color: #ffff00;">⌨️ Keyboard shortcut blocked!</p>';
+            break;
+        default:
+            reasonText = '<p style="color: #ffff00;">🚫 Unauthorized access attempt!</p>';
+    }
+    
+    alertDiv.innerHTML = `
+        <h3 style="margin-bottom: 15px; color: #fff; text-shadow: 0 0 10px #ff0000;">🚫 ACCESS DENIED 🚫</h3>
+        ${reasonText}
+        <p style="margin: 10px 0;">This page is protected by <strong>Cyber Security Team</strong></p>
+        <p style="margin: 10px 0;">Contact: <a href="https://t.me/cybersecurityteam_cst" style="color: #00ff00; text-decoration: none;">@cybersecurityteam_cst</a></p>
+        <button onclick="dismissAlert()" style="margin-top: 15px; padding: 8px 20px; background: #000; color: #00ff00; border: 2px solid #00ff00; cursor: pointer; border-radius: 5px; font-family: inherit;">OK</button>
+    `;
+    
+    // Remove any existing alerts
+    const existingAlert = document.getElementById('protection-alert');
+    if (existingAlert) {
+        existingAlert.remove();
+    }
+    
+    document.body.appendChild(alertDiv);
+    
+    // Auto-dismiss after 8 seconds
+    setTimeout(() => {
+        dismissAlert();
+    }, 8000);
+}
+
+// Function to dismiss alert
+function dismissAlert() {
+    const alertDiv = document.getElementById('protection-alert');
+    if (alertDiv) {
+        alertDiv.style.animation = 'alertFadeOut 5s ease-out';
+        setTimeout(() => {
+            alertDiv.remove();
+            protectionState.alertShown = false;
+        }, 300);
+    }
+}
+
+// Add CSS animations
+const protectionStyle = document.createElement('style');
+protectionStyle.textContent = `
+    @keyframes alertPulse {
+        0% { transform: translate(-50%, -50%) scale(0.8); opacity: 0; }
+        50% { transform: translate(-50%, -50%) scale(1.05); }
+        100% { transform: translate(-50%, -50%) scale(1); opacity: 1; }
+    }
+    
+    @keyframes alertFadeOut {
+        0% { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+        100% { opacity: 0; transform: translate(-50%, -50%) scale(0.8); }
+    }
+    
+    /* Enhanced screenshot protection overlay */
+    .screenshot-protection {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(255, 0, 0, 0.1);
+        z-index: 999998;
+        pointer-events: none;
+        animation: screenshotFlash 0.1s ease-in-out;
+    }
+    
+    @keyframes screenshotFlash {
+        0%, 100% { opacity: 0; }
+        50% { opacity: 1; }
+    }
+`;
+document.head.appendChild(protectionStyle);
+
+// Enhanced screenshot protection
+function detectScreenshot() {
+    // Create flash overlay
+    const overlay = document.createElement('div');
+    overlay.className = 'screenshot-protection';
+    document.body.appendChild(overlay);
+    
+    setTimeout(() => {
+        overlay.remove();
+    }, 100);
+    
+    showProtectionAlert('screenshot');
+    
+    // Log screenshot attempt
+    console.log('%c🚨 SCREENSHOT ATTEMPT DETECTED! 🚨', 'color: red; font-size: 20px; font-weight: bold;');
+    console.log('%cAttempt #' + protectionState.screenshotAttempts, 'color: red; font-size: 16px;');
+}
+
+// Disable right-click context menu
+document.addEventListener('contextmenu', function(e) {
+    e.preventDefault();
+    showProtectionAlert('rightclick');
+    return false;
+});
+
+// Enhanced keyboard protection
+document.addEventListener('keydown', function(e) {
+    let blocked = false;
+    
+    // F12
+    if (e.keyCode === 123) {
+        blocked = true;
+    }
+    // Ctrl+Shift+I (Developer Tools)
+    else if (e.ctrlKey && e.shiftKey && e.keyCode === 73) {
+        blocked = true;
+    }
+    // Ctrl+Shift+J (Console)
+    else if (e.ctrlKey && e.shiftKey && e.keyCode === 74) {
+        blocked = true;
+    }
+    // Ctrl+U (View Source)
+    else if (e.ctrlKey && e.keyCode === 85) {
+        blocked = true;
+    }
+    // Ctrl+S (Save Page)
+    else if (e.ctrlKey && e.keyCode === 83) {
+        blocked = true;
+    }
+    // Ctrl+A (Select All)
+    else if (e.ctrlKey && e.keyCode === 65) {
+        blocked = true;
+    }
+    // Ctrl+P (Print)
+    else if (e.ctrlKey && e.keyCode === 80) {
+        blocked = true;
+    }
+    // Ctrl+Shift+C (Inspect Element)
+    else if (e.ctrlKey && e.shiftKey && e.keyCode === 67) {
+        blocked = true;
+    }
+    // Print Screen
+    else if (e.keyCode === 44) {
+        detectScreenshot();
+        blocked = true;
+    }
+    
+    if (blocked) {
+        e.preventDefault();
+        showProtectionAlert('keyboard');
+        return false;
+    }
+});
+
+// Disable text selection
+document.onselectstart = function() {
+    return false;
+};
+
+document.onmousedown = function() {
+    return false;
+};
+
+// Disable drag and drop
+document.ondragstart = function() {
+    return false;
+};
+
+// Enhanced developer tools detection
+let devtools = {
+    open: false,
+    orientation: null
+};
+
+const threshold = 160;
+
+setInterval(() => {
+    if (window.outerHeight - window.innerHeight > threshold || 
+        window.outerWidth - window.innerWidth > threshold) {
+        if (!devtools.open) {
+            devtools.open = true;
+            showProtectionAlert('devtools');
+            // Redirect after warning
             setTimeout(() => {
-                container.style.transform = 'translate(0, 0)';
-            }, 100);
-        }, 3000);
-    </script>
+                window.location.href = 'about:blank';
+            }, 3000);
+        }
+    } else {
+        devtools.open = false;
+    }
+}, 500);
+
+// Enhanced console protection
+Object.defineProperty(window, 'console', {
+    value: {
+        log: function() { showProtectionAlert(); },
+        warn: function() { showProtectionAlert(); },
+        error: function() { showProtectionAlert(); },
+        info: function() { showProtectionAlert(); },
+        debug: function() { showProtectionAlert(); },
+        clear: function() { showProtectionAlert(); },
+        dir: function() { showProtectionAlert(); },
+        dirxml: function() { showProtectionAlert(); },
+        table: function() { showProtectionAlert(); },
+        trace: function() { showProtectionAlert(); },
+        group: function() { showProtectionAlert(); },
+        groupCollapsed: function() { showProtectionAlert(); },
+        groupEnd: function() { showProtectionAlert(); },
+        time: function() { showProtectionAlert(); },
+        timeEnd: function() { showProtectionAlert(); },
+        profile: function() { showProtectionAlert(); },
+        profileEnd: function() { showProtectionAlert(); },
+        count: function() { showProtectionAlert(); }
+    },
+    writable: false,
+    configurable: false
+});
+
+// Clear console periodically
+setInterval(() => {
+    try {
+        console.clear();
+    } catch(e) {}
+}, 2000);
+
+// Enhanced image protection
+document.addEventListener('dragstart', function(e) {
+    if (e.target.tagName === 'IMG') {
+        e.preventDefault();
+        showProtectionAlert();
+    }
+});
+
+// Advanced screenshot detection methods
+document.addEventListener('keyup', function(e) {
+    if (e.keyCode === 44) { // Print Screen
+        detectScreenshot();
+    }
+});
+
+// Detect window focus changes (potential screenshot tools)
+let windowFocused = true;
+window.addEventListener('focus', () => {
+    if (!windowFocused) {
+        // Window regained focus, possible screenshot tool was used
+        detectScreenshot();
+    }
+    windowFocused = true;
+});
+
+window.addEventListener('blur', () => {
+    windowFocused = false;
+});
+
+// Disable iframe embedding
+if (window.top !== window.self) {
+    window.top.location = window.self.location;
+}
+
+// Enhanced anti-debugging
+setInterval(() => {
+    const start = performance.now();
+    debugger;
+    const end = performance.now();
+    if (end - start > 100) {
+        showProtectionAlert('devtools');
+        setTimeout(() => {
+            window.location.href = 'about:blank';
+        }, 2000);
+    }
+}, 2000);
+
+// Disable copy paste
+document.addEventListener('copy', function(e) {
+    e.preventDefault();
+    showProtectionAlert();
+    return false;
+});
+
+document.addEventListener('paste', function(e) {
+    e.preventDefault();
+    showProtectionAlert();
+    return false;
+});
+
+// Monitor for screenshot applications
+setInterval(() => {
+    // Check if common screenshot tools are running (basic detection)
+    if (navigator.userAgent.includes('Lightshot') || 
+        navigator.userAgent.includes('Snagit') ||
+        navigator.userAgent.includes('Greenshot')) {
+        detectScreenshot();
+    }
+}, 1000);
+
+// Watermark protection (add invisible watermark)
+function addWatermark() {
+    const watermark = document.createElement('div');
+    watermark.style.position = 'fixed';
+    watermark.style.top = '10px';
+    watermark.style.right = '10px';
+    watermark.style.color = 'rgba(255, 255, 255, 0.1)';
+    watermark.style.fontSize = '12px';
+    watermark.style.zIndex = '999999';
+    watermark.style.pointerEvents = 'none';
+    watermark.style.userSelect = 'none';
+    watermark.textContent = 'Protected by CST - @cybersecurityteam_cst';
+    document.body.appendChild(watermark);
+}
+
+// Initialize watermark
+addWatermark();
+
+// Final protection message
+console.log('%c🛡️ ENHANCED PROTECTION ACTIVE 🛡️', 'color: red; font-size: 20px; font-weight: bold;');
+console.log('%cScreenshot Protection: ENABLED', 'color: green; font-size: 14px;');
+console.log('%cContact: https://t.me/cybersecurityteam_cst', 'color: green; font-size: 14px;');
+</script>
+
 </body>
 </html>
 
