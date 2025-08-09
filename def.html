@@ -508,7 +508,7 @@ Professional Security Consultants
 let protectionState = {
     alertShown: false,
     lastAlertTime: 0,
-    alertCooldown: 30000, // 3 seconds cooldown between alerts
+    alertCooldown: 3000, // 3 seconds cooldown between alerts
     screenshotAttempts: 0
 };
 
@@ -587,7 +587,7 @@ function showProtectionAlert(reason = 'general') {
 function dismissAlert() {
     const alertDiv = document.getElementById('protection-alert');
     if (alertDiv) {
-        alertDiv.style.animation = 'alertFadeOut 5s ease-out';
+        alertDiv.style.animation = 'alertFadeOut 0.3s ease-out';
         setTimeout(() => {
             alertDiv.remove();
             protectionState.alertShown = false;
